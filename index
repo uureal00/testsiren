@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>매혹의브랜딩 | 설계되지 않은 매혹은 존재하지 않는다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --magenta: #E5007A;
+    --magenta-mid: #C4006A;
+    --purple: #6B0D9E;
+    --purple-deep: #4A0070;
+    --purple-darker: #2D0050;
+    --grad: linear-gradient(135deg, #E5007A 0%, #9B1EA8 50%, #6B0D9E 100%);
+    --grad-soft: linear-gradient(135deg, rgba(229,0,122,0.15) 0%, rgba(107,13,158,0.15) 100%);
+    --white: #FFFFFF;
+    --off-white: #FAF8FF;
+    --dark: #0D0010;
+    --dark-mid: #1A0025;
+    --text-body: #2A0035;
+    --text-muted: #7B6B85;
+    --border: rgba(107,13,158,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--off-white);
+    color: var(--text-body);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(13,0,16,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(229,0,122,0.2);
+  }
+  .nav-logo {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.1rem; font-weight: 700;
+    background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 0.88rem; font-weight: 400; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    background: var(--grad); color: #fff;
+    padding: 0.6rem 1.4rem; border-radius: 50px;
+    font-size: 0.82rem; font-weight: 700; text-decoration: none;
+    letter-spacing: 0.02em;
+    box-shadow: 0 0 20px rgba(229,0,122,0.4);
+    transition: box-shadow 0.3s;
+  }
+  .nav-cta:hover { box-shadow: 0 0 30px rgba(229,0,122,0.7); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 8rem 5% 6rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(229,0,122,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 50% at 80% 80%, rgba(107,13,158,0.2) 0%, transparent 60%);
+  }
+  .hero-eyebrow {
+    font-size: 0.78rem; letter-spacing: 0.28em; font-weight: 400;
+    color: rgba(229,0,122,0.9); text-transform: uppercase;
+    margin-bottom: 1.5rem; position: relative;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(229,0,122,0.12); border: 1px solid rgba(229,0,122,0.35);
+    border-radius: 50px; padding: 0.45rem 1.2rem;
+    font-size: 0.8rem; color: rgba(255,255,255,0.7);
+    margin-bottom: 2.5rem; position: relative;
+  }
+  .hero-badge span { color: var(--magenta); font-weight: 700; }
+  .hero h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900; line-height: 1.15;
+    color: #fff; position: relative;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.03em;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem); color: rgba(255,255,255,0.6);
+    max-width: 500px; margin: 1.5rem auto 2.5rem;
+    line-height: 1.7; position: relative;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+  }
+  .hero-stats {
+    display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;
+    font-size: 0.82rem; color: rgba(255,255,255,0.45);
+    margin-bottom: 3rem; position: relative;
+  }
+  .hero-stats span { padding: 0 1rem; border-right: 1px solid rgba(255,255,255,0.15); }
+  .hero-stats span:last-child { border-right: none; }
+  .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; position: relative; }
+  .btn-primary {
+    background: var(--grad); color: #fff;
+    padding: 1rem 2.2rem; border-radius: 50px;
+    font-size: 0.95rem; font-weight: 700; text-decoration: none;
+    box-shadow: 0 8px 40px rgba(229,0,122,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 50px rgba(229,0,122,0.6); }
+  .btn-ghost {
+    background: transparent; color: rgba(255,255,255,0.7);
+    padding: 1rem 2.2rem; border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.95rem; font-weight: 500; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(229,0,122,0.5); color: #fff; }
+
+  /* ─── PROBLEM SECTION ─── */
+  .section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
+  .section-full { padding: 6rem 5%; }
+
+  h2.section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.3;
+    letter-spacing: -0.03em;
+    color: var(--dark);
+    margin-bottom: 1rem;
+  }
+  h2.section-title.light { color: #fff; }
+
+  .problem-section {
+    background: var(--dark); padding: 7rem 5%;
+  }
+  .problem-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 3rem auto;
+  }
+  .problem-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(229,0,122,0.15);
+    border-radius: 16px; padding: 2rem;
+    transition: border-color 0.3s;
+  }
+  .problem-card:hover { border-color: rgba(229,0,122,0.4); }
+  .problem-label {
+    font-size: 0.72rem; letter-spacing: 0.15em; color: var(--magenta);
+    text-transform: uppercase; font-weight: 700; margin-bottom: 0.8rem;
+  }
+  .problem-card p { color: rgba(255,255,255,0.65); line-height: 1.75; font-size: 0.95rem; }
+  .problem-conclusion {
+    text-align: center; max-width: 700px; margin: 0 auto;
+    color: rgba(255,255,255,0.5); font-size: 1rem; line-height: 1.8;
+  }
+  .problem-conclusion strong { color: #fff; }
+
+  /* ─── CONCEPT / FRAMEWORK ─── */
+  .framework-bg { background: var(--off-white); padding: 7rem 5%; }
+  .framework-intro {
+    text-align: center; max-width: 700px; margin: 0 auto 4rem;
+  }
+  .framework-intro p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; margin-top: 1rem; }
+  .framework-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .framework-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 2.5rem 2rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .framework-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: var(--grad);
+  }
+  .framework-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(107,13,158,0.12); }
+  .fc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 600;
+    background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .fc-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--dark); margin-bottom: 0.6rem;
+  }
+  .fc-sub { font-size: 0.82rem; color: var(--magenta); font-weight: 700; margin-bottom: 0.8rem; letter-spacing: 0.05em; }
+  .fc-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* ─── BRAND EXAMPLE / BEFORE-AFTER ─── */
+  .dark-section { background: var(--dark-mid); padding: 7rem 5%; }
+  .examples-wrap { max-width: 1000px; margin: 0 auto; }
+  .example-item {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; border-radius: 16px; overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(229,0,122,0.2);
+  }
+  .ex-before, .ex-after {
+    padding: 2rem;
+  }
+  .ex-before { background: rgba(255,255,255,0.04); }
+  .ex-after { background: rgba(229,0,122,0.08); }
+  .ex-label {
+    font-size: 0.7rem; letter-spacing: 0.2em; font-weight: 700; text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .ex-before .ex-label { color: rgba(255,255,255,0.3); }
+  .ex-after .ex-label { color: var(--magenta); }
+  .ex-brand { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; }
+  .ex-text { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.6; }
+  .ex-after .ex-text { color: #fff; font-weight: 500; }
+  .ex-comment { font-size: 0.82rem; color: rgba(229,0,122,0.8); margin-top: 0.8rem; font-style: italic; }
+
+  /* ─── PROCESS ─── */
+  .process-section { background: #fff; padding: 7rem 5%; }
+  .process-steps {
+    display: flex; flex-direction: column; gap: 0;
+    max-width: 800px; margin: 3rem auto;
+  }
+  .step {
+    display: grid; grid-template-columns: 3rem 1fr;
+    gap: 1.5rem; padding-bottom: 3rem; position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute; left: 1.4rem; top: 3rem; bottom: 0;
+    width: 1px; background: linear-gradient(180deg, var(--magenta) 0%, transparent 100%);
+  }
+  .step-num {
+    width: 3rem; height: 3rem; border-radius: 50%;
+    background: var(--grad);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 0.9rem;
+    flex-shrink: 0; box-shadow: 0 0 20px rgba(229,0,122,0.4);
+  }
+  .step-content h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem;
+  }
+  .step-content p { color: var(--text-muted); line-height: 1.75; font-size: 0.95rem; }
+
+  /* ─── SUCCESS CASE ─── */
+  .case-section { background: var(--dark); padding: 7rem 5%; }
+  .case-card {
+    max-width: 900px; margin: 3rem auto;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(229,0,122,0.25);
+    border-radius: 24px; overflow: hidden;
+  }
+  .case-header {
+    background: var(--grad);
+    padding: 2rem 2.5rem;
+  }
+  .case-header h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.4rem; font-weight: 900; color: #fff; margin-bottom: 0.3rem;
+  }
+  .case-header p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+  .case-body { padding: 2.5rem; }
+  .case-strategy {
+    background: rgba(229,0,122,0.08);
+    border: 1px solid rgba(229,0,122,0.2);
+    border-radius: 12px; padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .case-strategy p { color: rgba(255,255,255,0.75); line-height: 1.75; font-size: 0.95rem; }
+  .case-results {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  .result-item {
+    text-align: center; padding: 1.2rem;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .result-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 600;
+    background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    display: block;
+  }
+  .result-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonial-section { background: var(--off-white); padding: 7rem 5%; overflow: hidden; }
+  .testimonial-track {
+    display: flex; gap: 1.5rem;
+    animation: scroll-left 30s linear infinite;
+    width: max-content;
+  }
+  .testimonial-track:hover { animation-play-state: paused; }
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .t-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.8rem 2rem;
+    min-width: 320px; max-width: 360px;
+    flex-shrink: 0;
+  }
+  .t-platform { font-size: 0.72rem; letter-spacing: 0.15em; color: var(--magenta); font-weight: 700; margin-bottom: 0.8rem; text-transform: uppercase; }
+  .t-text { color: var(--text-body); font-size: 0.92rem; line-height: 1.75; margin-bottom: 1rem; }
+  .t-author { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+
+  /* ─── ABOUT ─── */
+  .about-section { background: #fff; padding: 7rem 5%; }
+  .about-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 600; font-style: italic;
+    background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1.4; margin-bottom: 2rem;
+  }
+  .about-text { color: var(--text-muted); line-height: 1.85; font-size: 0.98rem; margin-bottom: 1.2rem; }
+  .about-creds { margin-top: 2rem; }
+  .cred-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 0.8rem 0; border-bottom: 1px solid var(--border);
+  }
+  .cred-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--magenta); margin-top: 0.5rem; flex-shrink: 0; }
+  .cred-text { font-size: 0.9rem; color: var(--text-body); line-height: 1.6; }
+  .about-visual {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .stat-block {
+    background: var(--dark);
+    border-radius: 16px; padding: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .stat-block::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--grad);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 600;
+    background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat-desc { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.3rem; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-mini { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.2rem; }
+
+  /* ─── USP ─── */
+  .usp-section { background: var(--dark-mid); padding: 7rem 5%; }
+  .usp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 3rem auto; }
+  .usp-card {
+    padding: 2.5rem; border-radius: 20px;
+    border: 1px solid rgba(229,0,122,0.2);
+    background: rgba(255,255,255,0.03);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .usp-card:hover { background: rgba(229,0,122,0.06); border-color: rgba(229,0,122,0.4); }
+  .usp-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .usp-card h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem;
+  }
+  .usp-card p { color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.75; }
+
+  /* ─── RULES ─── */
+  .rules-section { background: var(--off-white); padding: 5rem 5%; }
+  .rules-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .rule-block { padding: 2rem; border-radius: 16px; }
+  .rule-block.yes { background: rgba(229,0,122,0.06); border: 1px solid rgba(229,0,122,0.2); }
+  .rule-block.no { background: rgba(107,13,158,0.06); border: 1px solid rgba(107,13,158,0.2); }
+  .rule-header { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; margin-bottom: 1rem; }
+  .rule-block.yes .rule-header { color: var(--magenta); }
+  .rule-block.no .rule-header { color: var(--purple); }
+  .rule-item { display: flex; gap: 0.7rem; align-items: flex-start; margin-bottom: 0.7rem; font-size: 0.9rem; line-height: 1.6; color: var(--text-body); }
+  .rule-icon { flex-shrink: 0; }
+
+  /* ─── FAQ ─── */
+  .faq-section { background: #fff; padding: 7rem 5%; }
+  .faq-list { max-width: 750px; margin: 3rem auto; }
+  .faq-item {
+    border-bottom: 1px solid var(--border); overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; text-align: left;
+    padding: 1.5rem 0; background: none; border: none; cursor: pointer;
+    font-size: 1rem; font-weight: 600; color: var(--dark);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .faq-q::after { content: '+'; font-size: 1.4rem; color: var(--magenta); transition: transform 0.3s; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .faq-item.open .faq-a { max-height: 300px; }
+  .faq-a p { padding: 0 0 1.5rem; color: var(--text-muted); line-height: 1.8; font-size: 0.93rem; }
+
+  /* ─── CTA FINAL ─── */
+  .final-cta {
+    background: var(--dark);
+    padding: 8rem 5%; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(229,0,122,0.2) 0%, transparent 70%);
+  }
+  .final-cta h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900; color: #fff; position: relative;
+    margin-bottom: 1.5rem; letter-spacing: -0.03em;
+    line-height: 1.3;
+  }
+  .final-cta p { color: rgba(255,255,255,0.5); font-size: 1.05rem; margin-bottom: 3rem; position: relative; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; }
+
+  /* ─── NEWSLETTER ─── */
+  .newsletter-section { background: var(--dark-mid); padding: 5rem 5%; }
+  .newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+  .newsletter-inner h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 1rem;
+  }
+  .newsletter-inner p { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.7; }
+  .newsletter-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .n-badge { font-size: 0.78rem; color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); border-radius: 50px; padding: 0.3rem 0.9rem; }
+  .email-form { display: flex; gap: 0.8rem; max-width: 420px; margin: 0 auto; }
+  .email-form input {
+    flex: 1; padding: 0.9rem 1.2rem; border-radius: 50px;
+    border: 1px solid rgba(229,0,122,0.3);
+    background: rgba(255,255,255,0.06); color: #fff;
+    font-size: 0.9rem; outline: none;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .email-form input::placeholder { color: rgba(255,255,255,0.3); }
+  .email-form input:focus { border-color: rgba(229,0,122,0.6); }
+  .email-form button {
+    padding: 0.9rem 1.5rem; border-radius: 50px;
+    background: var(--grad); color: #fff; border: none;
+    font-weight: 700; font-size: 0.88rem; cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+  .email-form button:hover { opacity: 0.85; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark); padding: 3rem 5%;
+    border-top: 1px solid rgba(229,0,122,0.15);
+  }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+  .footer-logo { font-family: 'Noto Serif KR', serif; font-weight: 700; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1rem; margin-bottom: 0.8rem; }
+  .footer-tagline { color: rgba(255,255,255,0.35); font-size: 0.82rem; line-height: 1.6; }
+  .footer-col h4 { color: rgba(255,255,255,0.6); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase; }
+  .footer-col a { display: block; color: rgba(255,255,255,0.4); font-size: 0.88rem; text-decoration: none; margin-bottom: 0.5rem; transition: color 0.2s; }
+  .footer-col a:hover { color: rgba(255,255,255,0.8); }
+  .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { color: rgba(255,255,255,0.25); font-size: 0.78rem; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * { animation: fadeUp 0.7s ease both; }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-badge { animation-delay: 0.2s; }
+  .hero h1 { animation-delay: 0.3s; }
+  .hero-sub { animation-delay: 0.4s; }
+  .hero-stats { animation-delay: 0.5s; }
+  .hero-cta-group { animation-delay: 0.6s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 4%; }
+    .nav-links { display: none; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .example-item { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .rules-inner { grid-template-columns: 1fr; }
+    .email-form { flex-direction: column; }
+    .stat-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── SECTION LABEL ─── */
+  .sec-label {
+    display: inline-block;
+    font-size: 0.72rem; letter-spacing: 0.22em; font-weight: 700;
+    color: var(--magenta); text-transform: uppercase;
+    background: rgba(229,0,122,0.08); border: 1px solid rgba(229,0,122,0.2);
+    padding: 0.3rem 0.9rem; border-radius: 50px;
+    margin-bottom: 1.2rem;
+  }
+  .sec-label.light { color: rgba(229,0,122,0.9); background: rgba(229,0,122,0.12); border-color: rgba(229,0,122,0.3); }
+  .text-center { text-align: center; }
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-700 { max-width: 700px; }
+  .mt-1 { margin-top: 1rem; }
+  .mt-2 { margin-top: 2rem; }
+  .purple-text { color: var(--purple-deep); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">매혹의브랜딩</div>
+  <ul class="nav-links">
+    <li><a href="#">홈</a></li>
+    <li><a href="#">서비스</a></li>
+    <li><a href="#">포트폴리오</a></li>
+    <li><a href="#">인사이트</a></li>
+  </ul>
+  <a href="#diagnose" class="nav-cta">무료 브랜드 진단</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">SIREN BRANDING</p>
+  <div class="hero-badge">
+    <span>대기업 마케팅 6년</span> · 브랜드 전략 설계 전문
+  </div>
+  <h1>고객은 제품을 사지 않습니다.<br><em>매혹에 끌립니다.</em></h1>
+  <p class="hero-sub">설계되지 않은 매혹은 존재하지 않는다.<br>브랜드의 원석을 발굴하고, 치명적인 전략으로 완성합니다.</p>
+  <div class="hero-stats">
+    <span>한샘 월 매출 10억 카테고리 총괄</span>
+    <span>삼성그룹 공모전 수상</span>
+    <span>3차 완판 브랜드 창업 설계</span>
+  </div>
+  <div class="hero-cta-group">
+    <a href="#diagnose" class="btn-primary">브랜드 무료 진단받기 →</a>
+    <a href="#case" class="btn-ghost">성공 사례 보기</a>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem-section">
+  <div style="max-width:1100px; margin:0 auto; text-align:center;">
+    <span class="sec-label light">문제 진단</span>
+    <h2 class="section-title light">매출이 안 나오는 브랜드에는<br>하나의 공통점이 있습니다.</h2>
+  </div>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="problem-label">광고는 하는데</div>
+      <p>"광고비는 쓰는데 전환이 안 된다. 상세페이지가 문제인지, 제품이 문제인지도 모르겠다."</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-label">브랜드는 있는데</div>
+      <p>"내 브랜드만의 차별점이 뭔지 설명하려면 막막하다. 경쟁사랑 뭐가 다른지 모르겠다."</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-label">외주는 맡겼는데</div>
+      <p>"대행사에 맡겼더니 예쁜 디자인만 나왔다. 전략은 없고 결과도 없다. 이제 누굴 믿어야 하나."</p>
+    </div>
+  </div>
+  <div class="problem-conclusion">
+    <p>이 모든 문제의 원인은 하나입니다.<br><strong>브랜드 안에 잠들어 있는 '원석'을 발굴하지 못했기 때문입니다.</strong><br>예쁜 디자인이 아니라, 구조를 설계해야 합니다.</p>
+  </div>
+</section>
+
+<!-- FRAMEWORK — 3단계 구조 -->
+<section class="framework-bg">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="framework-intro text-center">
+      <span class="sec-label">매혹 설계 프레임워크</span>
+      <h2 class="section-title">같은 제품이어도, 전략이 다르면<br>브랜드의 운명이 달라집니다.</h2>
+      <p>매혹의브랜딩은 인터뷰에서 시작합니다. 고객도 몰랐던 원석을 발굴하고,<br>그것을 치명적인 전략과 서사로 구조화합니다.</p>
+    </div>
+    <div class="framework-grid">
+      <div class="framework-card">
+        <div class="fc-num">01</div>
+        <div class="fc-sub">DISCOVER · 발굴</div>
+        <div class="fc-title">인터뷰 기반 원석 발굴</div>
+        <div class="fc-desc">고객 스스로도 인식하지 못한 브랜드의 본질과 차별화 요소를 심층 인터뷰로 끌어올립니다. 템플릿이 아닌, 브랜드 고유의 맥락에서 전략이 시작됩니다.</div>
+      </div>
+      <div class="framework-card">
+        <div class="fc-num">02</div>
+        <div class="fc-sub">DESIGN · 설계</div>
+        <div class="fc-title">시장 통찰 기반 차별화</div>
+        <div class="fc-desc">경쟁사와의 비교 분석과 시장 통찰을 바탕으로, 발굴된 원석이 실제 시장에서 경쟁력으로 작동하도록 언어와 구조로 재설계합니다.</div>
+      </div>
+      <div class="framework-card">
+        <div class="fc-num">03</div>
+        <div class="fc-sub">CAPTIVATE · 매혹</div>
+        <div class="fc-title">심리 기반 전환 구조 설계</div>
+        <div class="fc-desc">소비자의 선택 심리와 의사결정 구조를 기반으로 전환 장치를 설계합니다. 브랜딩 → 메시지 → 상세페이지 → 퍼널까지 일관된 매혹의 흐름으로 연결됩니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER EXAMPLES -->
+<section class="dark-section">
+  <div style="max-width:1100px; margin:0 auto; text-align:center;">
+    <span class="sec-label light">브랜딩의 힘</span>
+    <h2 class="section-title light" style="margin-bottom:0.5rem;">전략이 바뀌면, 브랜드의 언어가 달라집니다.</h2>
+    <p style="color:rgba(255,255,255,0.45); margin-bottom:3rem; font-size:0.95rem;">같은 제품도 어떻게 '매혹'을 설계하느냐에 따라 시장 포지션이 달라집니다.</p>
+  </div>
+  <div class="examples-wrap">
+    <div class="example-item">
+      <div class="ex-before">
+        <div class="ex-brand">공감도씨 · 온열매트</div>
+        <div class="ex-label">❌ 전략 전</div>
+        <div class="ex-text">따뜻하고 안전한 카본 온열매트.<br>귀뚜라미·한일과 동일 카테고리에서<br>기능·가격 경쟁 구조.</div>
+      </div>
+      <div class="ex-after">
+        <div class="ex-brand">공감도씨 · 매혹의브랜딩 설계 후</div>
+        <div class="ex-label">✅ 전략 후</div>
+        <div class="ex-text">국내 최초 '5성급 호텔 침구' 프리미엄 컨셉.<br>기능을 파는 시장에서 '침실 경험'을 판매하는<br>새로운 카테고리 언어를 창출.</div>
+        <div class="ex-comment">→ 3개월 내 3차 완판 · 경쟁사 대거 모방 · 방송 출연</div>
+      </div>
+    </div>
+    <div class="example-item">
+      <div class="ex-before">
+        <div class="ex-brand">대부분의 스마트스토어 브랜드</div>
+        <div class="ex-label">❌ 전략 전</div>
+        <div class="ex-text">"고품질 제품을 합리적 가격으로."<br>기능 나열과 가격 경쟁.<br>브랜드와 경쟁사의 차이가 없음.</div>
+      </div>
+      <div class="ex-after">
+        <div class="ex-brand">매혹의브랜딩 전략 설계 후</div>
+        <div class="ex-label">✅ 전략 후</div>
+        <div class="ex-text">고객이 자기도 모르게 끌리는<br>브랜드 서사와 차별화 구조 완성.<br>"왜 이 브랜드인가"의 답이 명확해짐.</div>
+        <div class="ex-comment">→ 전환율 상승 · 광고 효율 개선 · 가격 경쟁 탈피</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div style="max-width:900px; margin:0 auto;">
+    <div class="text-center">
+      <span class="sec-label">작업 프로세스</span>
+      <h2 class="section-title">모든 브랜딩은<br>깊은 인터뷰에서 시작됩니다.</h2>
+    </div>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>브랜드 진단 세션</h3>
+          <p>1:1 심층 인터뷰를 통해 브랜드의 배경, 제품, 타겟, 시장 포지션을 전방위로 분석합니다. 고객 스스로도 인식하지 못한 강점과 원석을 발굴합니다.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>시장·경쟁사 분석 및 전략 설계</h3>
+          <p>카테고리 내 경쟁 구조와 소비자 심리를 분석하여, 시장에서 실제로 먹히는 차별화 포인트와 포지셔닝 전략을 설계합니다.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>1차 시안 전달 → 피드백</h3>
+          <p>전략 방향성과 핵심 카피, 구조 설계 시안을 전달합니다. 충분한 소통과 피드백 과정을 통해 방향을 함께 정교화합니다. (1차 시안까지 평균 15일 이상 소요)</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>2차 시안 정교화</h3>
+          <p>피드백을 반영하여 브랜드 서사, 상세페이지 구조, 전환 장치를 심화·정교화합니다.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h3>최종 완성 납품</h3>
+          <p>3차 최종 시안을 완성하여 납품합니다. 단순 결과물이 아닌, 시장에서 스스로 작동하는 매혹의 구조를 완성하는 것이 목표입니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS CASE -->
+<section class="case-section" id="case">
+  <div style="max-width:1000px; margin:0 auto; text-align:center;">
+    <span class="sec-label light">대표 성공 사례</span>
+    <h2 class="section-title light">전통 대기업이 장악한 시장에서<br>신생 브랜드로 3차 완판.</h2>
+    <p style="color:rgba(255,255,255,0.4); margin-top:0.5rem; font-size:0.95rem;">이것은 성공 사례가 아니라, 시장 언어를 바꾼 사례입니다.</p>
+  </div>
+  <div class="case-card">
+    <div class="case-header">
+      <h3>프리미엄 온열매트 '공감도씨' — 창업 런칭 프로젝트</h3>
+      <p>귀뚜라미·한일이 장악한 카본 온열매트 시장 / 신규 창업 브랜드 / 런칭 3개월 내 성과</p>
+    </div>
+    <div class="case-body">
+      <div class="case-strategy">
+        <div class="ex-label" style="margin-bottom:0.6rem;">핵심 전략</div>
+        <p>기능 중심 레드오션 시장에 <strong style="color:rgba(229,0,122,0.9);">국내 최초 '5성급 호텔 침구' 프리미엄 컨셉</strong>을 도입. "따뜻한 매트"가 아닌 "프리미엄 침실 경험"으로 카테고리 언어 자체를 재정의했습니다. 브랜드 네이밍부터 로고, 포지셔닝 전략, 촬영 기획, 상세페이지 전환 구조까지 창업 전 과정을 총괄 설계.</p>
+      </div>
+      <div class="case-results">
+        <div class="result-item">
+          <span class="result-num">3차</span>
+          <div class="result-label">준비 물량 전량 완판<br>(3개월 이내)</div>
+        </div>
+        <div class="result-item">
+          <span class="result-num">4.99</span>
+          <div class="result-label">고객 만족도<br>(5점 만점)</div>
+        </div>
+        <div class="result-item">
+          <span class="result-num">최초</span>
+          <div class="result-label">네이버 쇼핑 브랜드관 등록<br>(신생 브랜드 이례적)</div>
+        </div>
+        <div class="result-item">
+          <span class="result-num">TV</span>
+          <div class="result-label">방송 '꾸며줘 홈즈' 출연<br>+ 경쟁사 대거 모방</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-section">
+  <div style="text-align:center; margin-bottom:3rem;">
+    <span class="sec-label">클라이언트 후기</span>
+    <h2 class="section-title">한 번 작업한 대표님들이<br>다시 찾아오는 이유.</h2>
+  </div>
+  <div style="overflow:hidden;">
+    <div class="testimonial-track">
+      <div class="t-card"><div class="t-platform">크몽 리뷰</div><p class="t-text">"단순한 상세페이지가 아니라 브랜드 전체를 다시 보게 됐습니다. 내가 뭘 팔고 있는지 처음으로 제대로 이해한 것 같아요."</p><div class="t-author">식품 브랜드 대표 K님</div></div>
+      <div class="t-card"><div class="t-platform">크몽 리뷰</div><p class="t-text">"인터뷰 과정에서 '아, 이게 우리 브랜드의 진짜 강점이었구나' 깨달았어요. 대형 대행사와 다른 차원이었습니다."</p><div class="t-author">뷰티 브랜드 대표 L님</div></div>
+      <div class="t-card"><div class="t-platform">카카오톡</div><p class="t-text">"광고 효율이 눈에 띄게 달라졌어요. 같은 예산인데 전환율이 올라갔다는 게 신기합니다. 구조가 바뀌니까 결과가 달랐어요."</p><div class="t-author">스마트스토어 대표 P님</div></div>
+      <div class="t-card"><div class="t-platform">인스타그램</div><p class="t-text">"리브랜딩이라고 생각했는데, 사실상 브랜드를 처음부터 다시 제대로 설계한 수준이었어요. 감동받았습니다."</p><div class="t-author">라이프스타일 브랜드 대표 C님</div></div>
+      <div class="t-card"><div class="t-platform">크몽 리뷰</div><p class="t-text">"전화 상담 30분 만에 우리 브랜드의 문제점을 정확히 짚어주셨어요. 이런 분이 있었구나 싶었습니다."</p><div class="t-author">헬스케어 브랜드 대표 S님</div></div>
+      <div class="t-card"><div class="t-platform">Threads</div><p class="t-text">"기획이라는 게 이런 거구나 처음 알았어요. 디자인 예쁘게 만드는 것과 완전히 다른 영역이었습니다."</p><div class="t-author">반려동물 용품 대표 H님</div></div>
+      <!-- 복제 (무한 루프) -->
+      <div class="t-card"><div class="t-platform">크몽 리뷰</div><p class="t-text">"단순한 상세페이지가 아니라 브랜드 전체를 다시 보게 됐습니다. 내가 뭘 팔고 있는지 처음으로 제대로 이해한 것 같아요."</p><div class="t-author">식품 브랜드 대표 K님</div></div>
+      <div class="t-card"><div class="t-platform">크몽 리뷰</div><p class="t-text">"인터뷰 과정에서 '아, 이게 우리 브랜드의 진짜 강점이었구나' 깨달았어요. 대형 대행사와 다른 차원이었습니다."</p><div class="t-author">뷰티 브랜드 대표 L님</div></div>
+      <div class="t-card"><div class="t-platform">카카오톡</div><p class="t-text">"광고 효율이 눈에 띄게 달라졌어요. 같은 예산인데 전환율이 올라갔다는 게 신기합니다. 구조가 바뀌니까 결과가 달랐어요."</p><div class="t-author">스마트스토어 대표 P님</div></div>
+      <div class="t-card"><div class="t-platform">인스타그램</div><p class="t-text">"리브랜딩이라고 생각했는데, 사실상 브랜드를 처음부터 다시 제대로 설계한 수준이었어요. 감동받았습니다."</p><div class="t-author">라이프스타일 브랜드 대표 C님</div></div>
+      <div class="t-card"><div class="t-platform">크몽 리뷰</div><p class="t-text">"전화 상담 30분 만에 우리 브랜드의 문제점을 정확히 짚어주셨어요. 이런 분이 있었구나 싶었습니다."</p><div class="t-author">헬스케어 브랜드 대표 S님</div></div>
+      <div class="t-card"><div class="t-platform">Threads</div><p class="t-text">"기획이라는 게 이런 거구나 처음 알았어요. 디자인 예쁘게 만드는 것과 완전히 다른 영역이었습니다."</p><div class="t-author">반려동물 용품 대표 H님</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="about-inner">
+    <div>
+      <span class="sec-label">세이렌에 대하여</span>
+      <div class="about-quote">"설계되지 않은<br>매혹은<br>존재하지 않는다."</div>
+      <p class="about-text">나는 대기업 마케팅팀에서 6년간 기획자로 일했습니다. 월 매출 수억, 수십억 규모의 상품을 다루며 상품개발과 브랜딩, 카테고리 전략을 설계했습니다.</p>
+      <p class="about-text">안정적인 자리였지만, 늘 갈증이 있었습니다. 내가 설계한 전략이 어디까지 통하는지 직접 증명해보고 싶었습니다. 그래서 나왔습니다. 그렇게 '매혹의브랜딩'이 시작됐습니다.</p>
+      <p class="about-text">세이렌은 무작정 홀리지 않습니다. 계산된 구조로 항로를 바꿉니다.</p>
+      <div class="about-creds">
+        <div class="cred-item"><div class="cred-dot"></div><div class="cred-text">국내 1위 가구 유통기업 한샘 — 월 매출 10억 카테고리 마케팅 총괄</div></div>
+        <div class="cred-item"><div class="cred-dot"></div><div class="cred-text">삼성전자 상품기획실 VIP센터 근무 · 삼성그룹 공모전 수상</div></div>
+        <div class="cred-item"><div class="cred-dot"></div><div class="cred-text">9만 팔로워 인플루언서 퍼널 구조 설계</div></div>
+        <div class="cred-item"><div class="cred-dot"></div><div class="cred-text">12만 팔로워 인플루언서 브랜딩 기획사 런칭 브랜딩 담당</div></div>
+        <div class="cred-item"><div class="cred-dot"></div><div class="cred-text">매혹의브랜딩 설립 3년 — 리브랜딩·신규 런칭 다수 수행</div></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="stat-block">
+        <div class="stat-num">6년</div>
+        <div class="stat-desc">대기업 마케팅팀 실무 경력<br>한샘 · 삼성전자</div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-block stat-mini">
+          <div class="stat-num" style="font-size:1.8rem;">3년</div>
+          <div class="stat-desc">매혹의브랜딩<br>운영 기간</div>
+        </div>
+        <div class="stat-block stat-mini">
+          <div class="stat-num" style="font-size:1.8rem;">50:50</div>
+          <div class="stat-desc">리브랜딩·신규<br>런칭 비율</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USP -->
+<section class="usp-section">
+  <div style="max-width:1100px; margin:0 auto; text-align:center;">
+    <span class="sec-label light">경쟁력</span>
+    <h2 class="section-title light">디자인을 잘하는 사람은 많습니다.<br>구조를 설계하는 사람은 드뭅니다.</h2>
+  </div>
+  <div class="usp-grid">
+    <div class="usp-card">
+      <div class="usp-icon">👁</div>
+      <h3>인터뷰 기반 원석 발굴</h3>
+      <p>모든 작업은 심층 인터뷰에서 시작합니다. 고객 스스로도 인식하지 못한 브랜드의 본질을 끌어올립니다. 템플릿이 아닌, 고유한 맥락의 전략입니다.</p>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">🧭</div>
+      <h3>시장 통찰 기반 차별화</h3>
+      <p>인위적으로 차별화를 만들지 않습니다. 시장 분석과 통찰을 기반으로 이미 존재하지만 드러나지 않았던 핵심 원석을 발굴하고 시장 언어로 번역합니다.</p>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">⚡</div>
+      <h3>심리 기반 전환 구조 설계</h3>
+      <p>감성 표현에 그치지 않습니다. 소비자 선택 심리를 기반으로 전환 장치를 설계합니다. 브랜딩부터 상세페이지, 퍼널까지 하나의 심리 흐름으로 연결됩니다.</p>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">🏗</div>
+      <h3>0 → 1 창업 설계 경험</h3>
+      <p>리브랜딩이 아닌, 브랜드를 처음부터 기획하여 시장을 뚫은 창업 설계 경험을 보유합니다. 네이밍부터 판매 전환까지 전 과정을 총괄할 수 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section class="rules-section">
+  <div style="text-align:center; margin-bottom:2rem;">
+    <span class="sec-label">작업 원칙</span>
+    <h2 class="section-title">세이렌의 기준</h2>
+  </div>
+  <div class="rules-inner">
+    <div class="rule-block yes">
+      <div class="rule-header">✅ ALWAYS</div>
+      <div class="rule-item"><span class="rule-icon">✓</span><span>모든 전략은 심층 인터뷰와 시장 분석에서 시작합니다.</span></div>
+      <div class="rule-item"><span class="rule-icon">✓</span><span>브랜드의 본질을 건드리는 깊이 있는 기획을 합니다.</span></div>
+      <div class="rule-item"><span class="rule-icon">✓</span><span>전략을 이해하고 브랜드를 진지하게 키우고자 하는 대표와 협업합니다.</span></div>
+      <div class="rule-item"><span class="rule-icon">✓</span><span>예쁜 결과물이 아니라, 팔리는 구조를 설계합니다.</span></div>
+    </div>
+    <div class="rule-block no">
+      <div class="rule-header">❌ NEVER</div>
+      <div class="rule-item"><span class="rule-icon">✗</span><span>템플릿 기반 공장형 작업은 하지 않습니다.</span></div>
+      <div class="rule-item"><span class="rule-icon">✗</span><span>인터뷰 없이 기획에 들어가지 않습니다.</span></div>
+      <div class="rule-item"><span class="rule-icon">✗</span><span>가격 경쟁에 참여하지 않습니다.</span></div>
+      <div class="rule-item"><span class="rule-icon">✗</span><span>"예쁘면 팔린다"는 방식으로 접근하지 않습니다.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div style="max-width:750px; margin:0 auto; text-align:center;">
+    <span class="sec-label">자주 묻는 질문</span>
+    <h2 class="section-title">궁금하신 점이 있으시죠?</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">구체적으로 어떻게 진행되나요?</button>
+      <div class="faq-a"><p>브랜드 진단 세션(1:1 심층 인터뷰) → 시장·경쟁사 분석 → 1차 시안 전달 및 피드백 → 2차 시안 정교화 → 3차 최종 완성 납품 순으로 진행됩니다. 전략 기획 중심이기 때문에 1차 시안까지 평균 15일 이상 소요됩니다.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">비용은 어떻게 되나요?</button>
+      <div class="faq-a"><p>프로젝트 범위와 복잡도에 따라 달라집니다. 가격 경쟁 중심의 서비스가 아니라, 전략 기획의 가치에 맞는 프리미엄 구조를 지향합니다. 구체적인 금액은 무료 진단 세션 이후 범위 확인 후 안내드립니다.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">상세페이지만 맡겨도 되나요?</button>
+      <div class="faq-a"><p>가능합니다. 다만 매혹의브랜딩은 단순 디자인 제작이 아닌 전략 설계를 기반으로 합니다. 상세페이지 작업이더라도 브랜드 전략과 연결된 구조로 기획하기 때문에, 인터뷰와 시장 분석 과정은 동일하게 진행됩니다.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">이미 운영 중인 브랜드도 리브랜딩이 가능한가요?</button>
+      <div class="faq-a"><p>네, 리브랜딩과 신규 런칭 비율이 약 50:50입니다. 이미 매출이 나오고 있지만 브랜드 방향성이 불명확하거나 전환율에 문제가 있는 경우에도 전략 재설계가 효과적입니다.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">다른 대행사와 어떻게 다른가요?</button>
+      <div class="faq-a"><p>대부분의 대행사는 디자인과 제작 중심입니다. 매혹의브랜딩은 인터뷰 기반 원석 발굴 → 시장 통찰 차별화 → 심리 기반 전환 구조 설계까지, 브랜드 전략 설계자 관점으로 접근합니다. 결과물이 아닌 구조를 납품합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="diagnose">
+  <h2>지식도 제품도 충분합니다.<br>부족한 건 '<em style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-style:normal;">매혹의 구조</em>' 하나입니다.</h2>
+  <p>브랜드 안에 잠들어 있는 원석을 발굴해드립니다.</p>
+  <div class="hero-cta-group" style="position:relative;">
+    <a href="#" class="btn-primary">브랜드 무료 진단 신청하기 →</a>
+    <a href="#" class="btn-ghost">포트폴리오 보기</a>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <h3>브랜딩 전략 인사이트,<br>매주 한 번 받아보세요.</h3>
+    <p>팔리는 브랜드를 만드는 전략가만 아는 노하우와<br>실제 사례 분석을 정기적으로 전달합니다.</p>
+    <div class="newsletter-badges">
+      <span class="n-badge">5분 분량</span>
+      <span class="n-badge">매주 1회</span>
+      <span class="n-badge">브랜딩 전략 중심</span>
+    </div>
+    <form class="email-form" onsubmit="return false;">
+      <input type="email" placeholder="이메일 주소를 입력하세요">
+      <button type="submit">구독하기</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">매혹의브랜딩 · SIREN BRANDING</div>
+      <p class="footer-tagline">설계되지 않은 매혹은 존재하지 않는다.<br>브랜드의 원석을 발굴하고, 치명적인 전략으로 완성합니다.</p>
+    </div>
+    <div class="footer-col">
+      <h4>바로가기</h4>
+      <a href="#">홈</a>
+      <a href="#">서비스 안내</a>
+      <a href="#">포트폴리오</a>
+      <a href="#">인사이트</a>
+    </div>
+    <div class="footer-col">
+      <h4>문의</h4>
+      <a href="#">크몽 프로필</a>
+      <a href="#">Threads</a>
+      <a href="#">네이버 블로그</a>
+      <a href="#">이메일 문의</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 매혹의브랜딩(SIREN BRANDING). All rights reserved.</p>
+    <p>개인정보처리방침</p>
+  </div>
+</footer>
+
+<script>
+  function toggle(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
